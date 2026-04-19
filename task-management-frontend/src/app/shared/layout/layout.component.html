@@ -1,0 +1,12 @@
+<div class="layout-wrap">
+  <app-navbar (menuToggled)="sidebarOpen = !sidebarOpen" />
+
+  <div class="layout-body">
+    <app-sidebar [class.mobile-open]="sidebarOpen" />
+    <div class="sidebar-overlay" *ngIf="sidebarOpen" (click)="sidebarOpen = false"></div>
+    
+    <main class="layout-main">
+      <router-outlet />
+    </main>
+  </div>
+</div>

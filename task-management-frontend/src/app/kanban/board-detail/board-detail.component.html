@@ -1,0 +1,110 @@
+<div class="page">
+  <header class="header">
+    <button class="btn-back" (click)="goBack()">← Back</button>
+    <h1>{{ board?.title }}</h1>
+    <button class="btn-outline" [routerLink]="['/boards', board?._id, 'team']">Team</button>
+    <button class="btn-primary" (click)="showListForm = !showListForm">+ Add List</button>
+  </header>
+
+  <div class="loading" *ngIf="loading">Loading...</div>
+
+  <div class="kanban" *ngIf="!loading">
+   <div class="list-col" *ngFor="let list of lists" @listAnimation>
+      <div class="list-header">
+        <span class="list-title">{{ list.title }}</span>
+        <span class="task-count">{{ tasks[list._id]?.length || 0 }}</span>
+        <button class="btn-delete-list" (click)="deleteList(list._id)">✕</button>
+      </div>
+
+      <div class="tasks"
+           cdkDropList
+           [id]="list._id"
+           [cdkDropListData]="tasks[list._id] || []"
+           [cdkDropListConnectedTo]="getListIds()"
+           (cdkDropListDropped)="drop($event, list._id)">
+
+       <div class="task-card"
+         *ngFor="let task of tasks[list._id]"
+         cdkDrag
+         @cardAnimation
+         (click)="openTask(task, list._id)">
+         
+         <div *cdkDragPlaceholder class="drag-placeholder"></div>
+
+          <div class="drag-handle" cdkDragHandle>
+            <svg width="12" height="12" viewBox="0 0 16 16" fill="none">
+              <circle cx="5" cy="4" r="1.2" fill="#ccc"/>
+              <circle cx="11" cy="4" r="1.2" fill="#ccc"/>
+              <circle cx="5" cy="8" r="1.2" fill="#ccc"/>
+              <circle cx="11" cy="8" r="1.2" fill="#ccc"/>
+              <circle cx="5" cy="12" r="1.2" fill="#ccc"/>
+              <circle cx="11" cy="12" r="1.2" fill="#ccc"/>
+            </svg>
+          </div>
+
+          <div class="task-priority" [class]="task.priority || 'medium'">
+            {{ task.priority || 'medium' }}
+          </div>
+
+          <div class="task-title">{{ task.title }}</div>
+
+          <div class="task-assignee" *ngIf="task.assignee">
+            <div class="mini-av">{{ getInitials(task.assignee.name || 'U') }}</div>
+            <span>{{ task.assignee.name }}</span>
+          </div>
+
+          <div class="task-footer">
+            <select [(ngModel)]="task.status"
+                    (change)="updateStatus(list._id, task._id, task.status)"
+                    (click)="$event.stopPropagation()">
+              <option value="todo">To Do</option>
+              <option value="in-progress">In Progress</option>
+              <option value="done">Done</option>
+            </select>
+            <button class="btn-delete-list" (click)="deleteList(list._id); $event.stopPropagation()">
+  ✕
+</button>
+          </div>
+
+          <div *cdkDragPlaceholder class="drag-placeholder"></div>
+        </div>
+
+        <div class="drop-zone-hint" *ngIf="!tasks[list._id]?.length">
+          Drop tasks here
+        </div>
+      </div>
+
+      <div class="add-task-form" *ngIf="showTaskForm[list._id]">
+        <input placeholder="Task title"
+               [(ngModel)]="newTaskTitle[list._id]"
+               (keyup.enter)="createTask(list._id)" />
+        <div class="form-actions">
+          <button class="btn-primary" (click)="createTask(list._id)">Add</button>
+          <button class="btn-outline" (click)="showTaskForm[list._id] = false">Cancel</button>
+        </div>
+      </div>
+
+      <button class="btn-add-task" *ngIf="!showTaskForm[list._id]"
+              (click)="showTaskForm[list._id] = true">+ Add Task</button>
+    </div>
+
+    <div class="add-list-col" *ngIf="showListForm">
+      <input placeholder="List title"
+             [(ngModel)]="newListTitle"
+             (keyup.enter)="createList()" />
+      <div class="form-actions">
+        <button class="btn-primary" (click)="createList()">Add List</button>
+        <button class="btn-outline" (click)="showListForm = false">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <app-task-modal
+    *ngIf="selectedTask"
+    [task]="selectedTask"
+    [listId]="selectedListId"
+    [boardId]="board?._id"
+    (closed)="closeModal()"
+    (updated)="onTaskUpdated($event)">
+  </app-task-modal>
+</div>

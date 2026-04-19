@@ -1,0 +1,104 @@
+<div class="mwrap" (click)="close()">
+  <div class="modal" (click)="$event.stopPropagation()">
+
+    <div class="modal-header">
+      <div class="modal-title">Task Details</div>
+      <button class="close-btn" (click)="close()">✕</button>
+    </div>
+
+    <div class="modal-body">
+      <div class="left-col">
+        <div class="field-group">
+          <label>Title</label>
+          <input [(ngModel)]="editTitle" />
+        </div>
+
+        <div class="field-group">
+          <label>Description</label>
+          <textarea [(ngModel)]="editDescription" rows="4" placeholder="Add a description..."></textarea>
+        </div>
+
+        <div class="comments-section">
+          <div class="section-title">Comments</div>
+
+          <div class="comment" *ngFor="let comment of task?.comments">
+            <div class="comment-av">{{ getInitials(comment.user?.name || 'U') }}</div>
+            <div class="comment-body">
+              <div class="comment-name">{{ comment.user?.name || 'User' }}</div>
+              <div class="comment-text">{{ comment.text }}</div>
+              <div class="comment-date">{{ comment.date | date:'MMM d, y' }}</div>
+            </div>
+          </div>
+
+          <div class="no-comments" *ngIf="!task?.comments?.length">No comments yet</div>
+
+          <div class="add-comment">
+            <input [(ngModel)]="newComment" placeholder="Write a comment..."
+                   (keyup.enter)="addComment()" />
+            <button class="btn-primary" (click)="addComment()">Send</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="field-group">
+          <label>Status</label>
+          <select [ngModel]="task?.status" (ngModelChange)="updateStatus($event)">
+            <option value="todo">To Do</option>
+            <option value="in-progress">In Progress</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+
+        <div class="field-group">
+          <label>Priority</label>
+          <select [(ngModel)]="editPriority">
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+
+        </div>
+<div class="field-group">
+  <label>Assignee</label>
+  <select [(ngModel)]="selectedAssignee">
+    <option value="">Unassigned</option>
+    <option *ngFor="let member of members" [value]="member._id">
+      {{ member.name }}
+    </option>
+  </select>
+</div>
+
+<div class="assignee-preview" *ngIf="selectedAssignee">
+  <div class="assign-av">{{ getInitials(getAssigneeName()) }}</div>
+  <span>{{ getAssigneeName() }}</span>
+</div>
+        <div class="field-group">
+          <label>Due Date</label>
+          <input type="date" [(ngModel)]="editDueDate" />
+        </div>
+
+        <div class="priority-badge" [class]="editPriority">
+          {{ editPriority | titlecase }} Priority
+        </div>
+
+        <div class="activity-section">
+          <div class="section-title">Activity</div>
+          <div class="activity" *ngFor="let log of task?.activityLog">
+            <div class="act-dot"></div>
+            <div class="act-text">{{ log.action }}</div>
+          </div>
+          <div class="no-comments" *ngIf="!task?.activityLog?.length">No activity yet</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button class="btn-outline" (click)="close()">Cancel</button>
+      <button class="btn-primary" (click)="save()" [disabled]="saving">
+        {{ saving ? 'Saving...' : 'Save Changes' }}
+      </button>
+    </div>
+
+  </div>
+</div>

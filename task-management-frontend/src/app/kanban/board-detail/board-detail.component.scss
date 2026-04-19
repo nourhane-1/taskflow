@@ -1,0 +1,289 @@
+.page { min-height: 100vh; background: #f0f2f5; }
+
+.header {
+  background: white;
+  padding: 0 2rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 1px solid #eee;
+  h1 { font-size: 18px; font-weight: 500; flex: 1; }
+}
+
+.kanban {
+  display: flex;
+  gap: 16px;
+  padding: 2rem;
+  overflow-x: auto;
+  align-items: flex-start;
+  min-height: calc(100vh - 60px);
+}
+
+.list-col {
+  background: #ebecf0;
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 260px;
+  max-width: 260px;
+}
+
+.list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  .list-title { font-size: 14px; font-weight: 500; }
+}
+
+.task-card {
+  background: white;
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  border: 1px solid #eee;
+  .task-title { font-size: 13px; margin-bottom: 8px; }
+  .task-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    select {
+      font-size: 11px;
+      padding: 2px 4px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      outline: none;
+    }
+  }
+}
+
+.add-task-form {
+  background: white;
+  border-radius: 8px;
+  padding: 10px;
+  margin-top: 8px;
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    outline: none;
+  }
+  .form-actions { display: flex; gap: 6px; }
+}
+
+.add-list-col {
+  background: #ebecf0;
+  border-radius: 12px;
+  padding: 12px;
+  min-width: 260px;
+  input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 8px;
+    outline: none;
+  }
+  .form-actions { display: flex; gap: 6px; }
+}
+
+.btn-primary {
+  padding: 6px 12px;
+  background: #185FA5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-outline {
+  padding: 6px 12px;
+  background: transparent;
+  color: #555;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-back {
+  padding: 6px 12px;
+  background: transparent;
+  color: #185FA5;
+  border: 1px solid #185FA5;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-delete-list {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px; // مساحة إضافية للضغط
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+  position: relative;
+  z-index: 10; // يضمن بقاء الزرار فوق خلفية الـ header
+
+  &:hover { 
+    color: #e24b4a; 
+    background: rgba(226, 75, 74, 0.1); // خلفية خفيفة عند الوقوف عليه
+    border-radius: 4px;
+  }
+}
+
+.btn-del-task {
+  background: none;
+  border: none;
+  color: #aaa;
+  cursor: pointer;
+  font-size: 12px;
+  &:hover { color: #e24b4a; }
+}
+
+.btn-add-task {
+  width: 100%;
+  padding: 8px;
+  background: transparent;
+  border: none;
+  color: #555;
+  font-size: 13px;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 6px;
+  margin-top: 4px;
+  &:hover { background: #ddd; }
+}
+
+.loading {
+  text-align: center;
+  padding: 3rem;
+  color: #888;
+}
+.task-assignee {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 6px;
+}
+
+.mini-av {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #185FA5;
+  color: white;
+  font-size: 8px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.task-count {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: #eee;
+  color: #888;
+  margin-left: 4px;
+}
+
+.task-priority {
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+  display: inline-block;
+  &.high { background: #FCEBEB; color: #791F1F; }
+  &.medium { background: #FAEEDA; color: #633806; }
+  &.low { background: #EAF3DE; color: #27500A; }
+}
+
+.drag-handle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  cursor: grab;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.task-card {
+  position: relative;
+  &:hover .drag-handle { opacity: 1; }
+}
+
+.drag-placeholder {
+  background: #E6F1FB;
+  border: 2px dashed #85B7EB;
+  border-radius: 8px;
+  min-height: 60px;
+  margin-bottom: 6px;
+}
+
+.drop-zone-hint {
+  text-align: center;
+  padding: 20px;
+  font-size: 12px;
+  color: #ccc;
+  border: 1.5px dashed #ddd;
+  border-radius: 8px;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drop-list-dragging .task-card:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+/* حركة انسيابية للكروت التي تعيد ترتيب نفسها */
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* حركة انسيابية للمكان الفارغ (Placeholder) */
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+/* تحسين شكل الكارت أثناء السحب الفعلي */
+.cdk-drag-preview {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !important;
+  border-radius: 8px;
+  opacity: 0.9;
+}
+
+/* حركة الكارت عند تركه يسقط في مكانه */
+.cdk-drag-placeholder {
+  opacity: 0.3;
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+/* تأكدي أن الكولوم يسمح بظهور الأنيميشن بداخله */
+.tasks {
+  min-height: 50px; // مساحة تضمن وجود مكان للأنيميشن حتى لو القائمة فارغة
+  transition: all 0.3s ease;
+}
+
+/* تعديل بسيط للـ task-card لضمان عدم تداخل الأنيميشن مع السحب */
+.task-card {
+  position: relative;
+  display: block; // مهم جداً لأنيميشن الـ Slide
+  background: white;
+  /* أي transition يدوي هنا قد يتعارض مع Angular Animations، لذا نتركه للـ Angular */
+}

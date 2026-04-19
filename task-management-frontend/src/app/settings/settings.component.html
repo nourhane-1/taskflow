@@ -1,0 +1,110 @@
+<div class="sett-wrap">
+  <div class="ph">
+    <div>
+      <div class="pt">Settings</div>
+      <div class="ps">Manage your personal preferences and workspace configuration</div>
+    </div>
+  </div>
+
+  <div class="saved-banner" *ngIf="saved">Preferences saved successfully!</div>
+
+  <div class="scard">
+    <div class="profile-row">
+      <div class="av-lg">{{ getInitials() }}</div>
+      <div class="profile-info">
+        <div class="profile-name">{{ name }}</div>
+        <div class="profile-role">Member</div>
+      </div>
+      <div class="profile-right">
+        <div class="role-label">ACCOUNT ROLE</div>
+        <div class="role-val">
+          <span class="role-dot"></span> Member
+        </div>
+      </div>
+    </div>
+    <div class="fields-grid">
+      <div class="field-group">
+        <div class="field-label">FULL NAME</div>
+        <input [(ngModel)]="name" />
+      </div>
+      <div class="field-group">
+        <div class="field-label">EMAIL ADDRESS</div>
+        <input [(ngModel)]="email" />
+      </div>
+    </div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-title">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1a5.5 5.5 0 0 1 5.5 5.5c0 2.5-.8 3.5-1 5H3.5c-.2-1.5-1-2.5-1-5A5.5 5.5 0 0 1 8 1z" stroke="currentColor" stroke-width="1.3"/>
+        <path d="M6 13.5a2 2 0 0 0 4 0" stroke="currentColor" stroke-width="1.3"/>
+      </svg>
+      Notification channels
+    </div>
+    <div class="srow">
+      <div class="sleft">
+        <div class="stitle">Email digests</div>
+        <div class="sdesc">Receive daily summary of your tasks</div>
+      </div>
+      <div class="tog" [class.on]="emailDigests" (click)="emailDigests = !emailDigests">
+        <div class="togdot"></div>
+      </div>
+    </div>
+    <div class="srow">
+      <div class="sleft">
+        <div class="stitle">Browser push</div>
+        <div class="sdesc">Get notified in your browser</div>
+      </div>
+      <div class="tog" [class.on]="browserPush" (click)="browserPush = !browserPush">
+        <div class="togdot"></div>
+      </div>
+    </div>
+    <div class="srow" style="border-bottom:none;">
+      <div class="sleft">
+        <div class="stitle">Mobile alerts</div>
+        <div class="sdesc">Push notifications on your phone</div>
+      </div>
+      <div class="tog" [class.on]="mobileAlerts" (click)="mobileAlerts = !mobileAlerts">
+        <div class="togdot"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scard">
+  <div class="scard-title">Appearance</div>
+  <div class="theme-grid">
+    <div class="theme-opt" [class.on]="!themeService.current" (click)="themeService.setDark(false)">
+      <div class="theme-preview light-prev"></div>
+      <div class="theme-name">Light</div>
+    </div>
+    <div class="theme-opt" [class.on]="themeService.current" (click)="themeService.setDark(true)">
+      <div class="theme-preview dark-prev"></div>
+      <div class="theme-name">Dark</div>
+    </div>
+  </div>
+</div>
+
+  <div class="danger-zone">
+    <div class="dz-title">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="none">
+        <path d="M8 1L15 14H1L8 1z" stroke="#A32D2D" stroke-width="1.3" stroke-linejoin="round"/>
+        <path d="M8 6v4M8 12v.5" stroke="#A32D2D" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+      Critical Operations
+    </div>
+    <div class="dz-desc">These actions are destructive and cannot be undone once confirmed.</div>
+    <div class="dz-row">
+      <div>
+        <div class="stitle">Delete account</div>
+        <div class="sdesc">Permanently removes your account and all data.</div>
+      </div>
+      <button class="del-btn">Delete Account</button>
+    </div>
+  </div>
+
+  <div class="sett-actions">
+    <button class="btn-outline" (click)="name = user?.name; email = user?.email">Discard Changes</button>
+    <button class="btn-primary" (click)="saveSettings()">Save Preferences</button>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+<div class="side">
+  <div class="ws">
+    <div class="wsic">TF</div>
+    <div>
+      <div class="wsn">TaskFlow</div>
+      <div class="wsp">Workspace</div>
+    </div>
+  </div>
+  
+
+  <div class="ni" routerLink="/boards" routerLinkActive="on" [routerLinkActiveOptions]="{exact: true}">
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+      <rect x="1" y="1" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+      <rect x="9" y="1" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+      <rect x="1" y="9" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+      <rect x="9" y="9" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.3"/>
+    </svg>
+    All Boards
+  </div>
+
+  <div class="ni" routerLink="/settings" routerLinkActive="on">
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+      <circle cx="8" cy="8" r="2.5" stroke="currentColor" stroke-width="1.3"/>
+      <path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.5 1.5M11.5 11.5L13 13M13 3l-1.5 1.5M4.5 11.5L3 13" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/>
+    </svg>
+    Settings
+  </div>
+
+  <div class="section-label">My Boards</div>
+
+  <div *ngFor="let board of boards">
+    <div class="ni board-ni" [class.on]="currentBoardId === board._id">
+      <span class="ndot" style="background:#185FA5;"></span>
+      <span class="board-name" (click)="goToBoard(board._id)">{{ board.title }}</span>
+      <span class="icon-btn" (click)="toggleBoard(board._id, $event)" title="Expand">
+        {{ expandedBoardId === board._id ? '▾' : '▸' }}
+      </span>
+      <span class="icon-btn team-txt" (click)="goToTeam(board._id, $event)" title="Team">
+        Team
+      </span>
+    </div>
+
+    <div class="board-lists" *ngIf="expandedBoardId === board._id">
+      <div *ngIf="!boardLists[board._id]" class="list-loading">Loading...</div>
+
+      <div *ngFor="let list of boardLists[board._id]">
+        <div class="list-ni" (click)="toggleList(list._id, $event)">
+          <span class="expand-icon">{{ boardTasks[list._id] ? '▾' : '▸' }}</span>
+          <span class="list-name" (click)="goToBoard(board._id); $event.stopPropagation()">
+       {{ list.title }}
+         </span>
+        </div>
+
+        <div class="task-ni-wrap" *ngIf="boardTasks[list._id]">
+          <div class="task-ni" *ngFor="let task of boardTasks[list._id]"
+               (click)="openTask(task, board._id)">
+            <span class="task-dot"></span>
+            {{ task.title }}
+          </div>
+          <div class="task-ni empty-task" *ngIf="boardTasks[list._id].length === 0">
+            No tasks
+          </div>
+        </div>
+      </div>
+
+      <div class="list-ni empty-task" *ngIf="boardLists[board._id]?.length === 0">
+        No lists yet
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-boards" *ngIf="boards.length === 0">No boards yet</div>
+
+  <button class="nbb" (click)="newBoard()">+ New Board</button>
+
+  <div class="sbot">
+    <div class="ni" (click)="logout()">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+        <path d="M6 2H3a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3M10 11l3-3-3-3M13 8H6"
+              stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Logout
+    </div>
+  </div>
+</div>

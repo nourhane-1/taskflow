@@ -1,0 +1,61 @@
+<div class="cont">
+  <div class="ph">
+    <div>
+      <div class="pt">My Boards</div>
+      <div class="ps">Manage and organize your projects</div>
+    </div>
+    <button class="btn-primary" (click)="showForm = !showForm">+ New Board</button>
+  </div>
+
+  <div class="create-form" *ngIf="showForm">
+    <input placeholder="Board title" [(ngModel)]="newTitle" (keyup.enter)="createBoard()" />
+    <input placeholder="Description (optional)" [(ngModel)]="newDescription" />
+    <div class="form-actions">
+      <button class="btn-primary" (click)="createBoard()">Create</button>
+      <button class="btn-outline" (click)="showForm = false">Cancel</button>
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="loading">Loading...</div>
+
+  <div *ngIf="!loading">
+    <div class="bgrid" *ngIf="boards.length > 0">
+      <div class="bc" *ngFor="let board of boards" (click)="openBoard(board._id)">
+        <div class="bic" style="background:#E6F1FB;">
+          <svg width="18" height="18" viewBox="0 0 16 16" fill="none">
+            <rect x="1" y="1" width="6" height="6" rx="1.5" stroke="#185FA5" stroke-width="1.3"/>
+            <rect x="9" y="1" width="6" height="6" rx="1.5" stroke="#185FA5" stroke-width="1.3"/>
+            <rect x="1" y="9" width="6" height="6" rx="1.5" stroke="#185FA5" stroke-width="1.3"/>
+            <rect x="9" y="9" width="6" height="6" rx="1.5" stroke="#185FA5" stroke-width="1.3"/>
+          </svg>
+        </div>
+        <div class="bn">{{ board.title }}</div>
+        <div class="bm">
+          <span style="font-size:12px;color:#888;">{{ board.description || 'No description' }}</span>
+        </div>
+        <button class="btn-delete" (click)="deleteBoard(board._id, $event)">Delete</button>
+      </div>
+
+      <div class="badd" (click)="showForm = true">
+        <svg width="20" height="20" viewBox="0 0 16 16" fill="none">
+          <path d="M8 3v10M3 8h10" stroke="#888" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span style="font-size:13px;color:#888;">New Board</span>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="boards.length === 0">
+      <div class="empty-icon">
+        <svg width="48" height="48" viewBox="0 0 16 16" fill="none">
+          <rect x="1" y="1" width="6" height="6" rx="1.5" stroke="#ccc" stroke-width="1"/>
+          <rect x="9" y="1" width="6" height="6" rx="1.5" stroke="#ccc" stroke-width="1"/>
+          <rect x="1" y="9" width="6" height="6" rx="1.5" stroke="#ccc" stroke-width="1"/>
+          <rect x="9" y="9" width="6" height="6" rx="1.5" stroke="#ccc" stroke-width="1"/>
+        </svg>
+      </div>
+      <div class="empty-title">No boards yet</div>
+      <div class="empty-desc">Create your first board to start organizing your tasks</div>
+      <button class="btn-primary" (click)="showForm = true">+ Create First Board</button>
+    </div>
+  </div>
+</div>

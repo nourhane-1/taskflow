@@ -1,0 +1,62 @@
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f5f5;
+}
+
+.auth-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+
+  h2 { font-size: 22px; font-weight: 500; margin-bottom: 4px; }
+  .subtitle { color: #888; font-size: 14px; margin-bottom: 24px; }
+}
+
+.form-group {
+  margin-bottom: 16px;
+  label { display: block; font-size: 13px; margin-bottom: 6px; color: #444; }
+  input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    &:focus { border-color: #185FA5; }
+  }
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background: #185FA5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  &:disabled { opacity: 0.6; cursor: not-allowed; }
+}
+
+.error {
+  background: #FCEBEB;
+  color: #791F1F;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: #888;
+  a { color: #185FA5; text-decoration: none; }
+}

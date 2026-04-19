@@ -1,0 +1,114 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #f0f2f5;
+  color: #222;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark {
+  background: #1a1d2e;
+  color: #e0e0e0;
+
+  .topbar, .side, .modal, .scard, .bc, .sett-wrap .scard,
+  .auth-card, .create-form, .add-list-col, .add-task-form {
+    background: #242737 !important;
+    border-color: #343748 !important;
+  }
+
+  .layout-main { background: #1a1d2e !important; }
+
+  .task-card {
+    background: #2d3045 !important;
+    border-color: #343748 !important;
+    .task-title { color: #e0e0e0 !important; }
+  }
+
+  .list-col { background: #242737 !important; }
+
+  .ni {
+    color: #aaa !important;
+    &:hover { background: #2d3045 !important; }
+    &.on { background: #1a3a5c !important; color: #85B7EB !important; }
+  }
+
+  input, select, textarea {
+    background: #2d3045 !important;
+    border-color: #343748 !important;
+    color: #e0e0e0 !important;
+  }
+
+  .header {
+    background: #242737 !important;
+    border-color: #343748 !important;
+    h1 { color: #e0e0e0 !important; }
+  }
+
+  .srch {
+    background: #2d3045 !important;
+    border-color: #343748 !important;
+    input { color: #e0e0e0 !important; }
+  }
+
+  .search-results, .notif-panel {
+    background: #242737 !important;
+    border-color: #343748 !important;
+  }
+
+  .result-item, .notif-item {
+    color: #e0e0e0 !important;
+    &:hover { background: #2d3045 !important; }
+  }
+
+  .board-lists, .task-ni-wrap {
+    border-color: #343748 !important;
+  }
+
+  .list-ni, .task-ni {
+    color: #aaa !important;
+    &:hover { background: #2d3045 !important; }
+  }
+
+  .section-label, .wsp, .ps { color: #666 !important; }
+  .wsn, .pt, .bn { color: #e0e0e0 !important; }
+
+  .sbot { border-color: #343748 !important; }
+
+  .badd {
+    background: #2d3045 !important;
+    border-color: #343748 !important;
+  }
+
+  .member-row { border-color: #343748 !important; }
+
+  .field-group label { color: #888 !important; }
+
+  .theme-opt { border-color: #343748 !important; }
+
+  .danger-zone { background: #2d1515 !important; border-color: #5c2d2d !important; }
+
+  .modal-header, .modal-footer { border-color: #343748 !important; }
+  .left-col { border-color: #343748 !important; }
+
+  .comment-body .comment-text { color: #ccc !important; }
+  .comment-av { background: #1a3a5c !important; }
+
+  .drop-zone-hint {
+    border-color: #343748 !important;
+    color: #555 !important;
+  }
+}
+@media (max-width: 768px) {
+  .layout-body {
+    flex-direction: column !important;
+  }
+
+  .side {
+    display: none !important;
+  }
+
+  .layout-main {
+    padding-bottom: 70px !important;
+  }
+}

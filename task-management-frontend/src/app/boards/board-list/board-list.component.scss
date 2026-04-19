@@ -1,0 +1,123 @@
+.cont { padding: 24px; max-width: 1100px; margin: 0 auto; }
+
+.ph {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  .pt { font-size: 22px; font-weight: 500; color: #222; }
+  .ps { font-size: 13px; color: #888; margin-top: 3px; }
+}
+
+.create-form {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  border: 1px solid #eee;
+  input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    outline: none;
+    &:focus { border-color: #185FA5; }
+  }
+  .form-actions { display: flex; gap: 8px; }
+}
+
+.bgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.bc {
+  background: white;
+  border: 0.5px solid #eee;
+  border-radius: 12px;
+  padding: 18px;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  &:hover { border-color: #bbb; }
+}
+
+.bic {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+}
+
+.bn { font-size: 14px; font-weight: 500; color: #222; margin-bottom: 5px; }
+.bm { font-size: 12px; margin-bottom: 12px; }
+
+.badd {
+  background: #fafafa;
+  border: 1px dashed #ccc;
+  border-radius: 12px;
+  padding: 18px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 130px;
+  &:hover { background: white; }
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  .empty-icon { margin-bottom: 16px; }
+  .empty-title { font-size: 18px; font-weight: 500; color: #333; margin-bottom: 8px; }
+  .empty-desc { font-size: 14px; color: #888; margin-bottom: 24px; }
+}
+
+.btn-primary {
+  padding: 8px 16px;
+  background: #185FA5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  &:hover { background: #0C447C; }
+}
+
+.btn-outline {
+  padding: 8px 16px;
+  background: transparent;
+  color: #185FA5;
+  border: 1px solid #185FA5;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  padding: 4px 10px;
+  background: #FCEBEB;
+  color: #791F1F;
+  border: none;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.loading {
+  text-align: center;
+  color: #888;
+  padding: 3rem;
+  font-size: 14px;
+}

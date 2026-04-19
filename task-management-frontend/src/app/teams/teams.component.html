@@ -1,0 +1,40 @@
+<div class="cont">
+  <div class="ph">
+    <div>
+      <div class="pt">Team — {{ board?.title }}</div>
+      <div class="ps">Manage members who have access to this board</div>
+    </div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-title">Add member</div>
+    <div class="add-row">
+      <input
+        [(ngModel)]="newEmail"
+        placeholder="Enter email address..."
+        (keyup.enter)="addMember()"
+      />
+      <button class="btn-primary" (click)="addMember()">Add</button>
+    </div>
+    <div class="error" *ngIf="error">{{ error }}</div>
+  </div>
+
+  <div class="scard">
+    <div class="scard-title">Members ({{ members.length }})</div>
+    <div class="loading" *ngIf="loading">Loading...</div>
+
+    <div class="member-row" *ngFor="let member of members">
+      <div class="member-av">{{ getInitials(member.name) }}</div>
+      <div class="member-info">
+        <div class="member-name">{{ member.name }}</div>
+        <div class="member-email">{{ member.email }}</div>
+      </div>
+      <div class="member-badge">Member</div>
+      <button class="btn-remove" (click)="removeMember(member._id, member.name)">Remove</button>
+    </div>
+
+    <div class="empty" *ngIf="!loading && members.length === 0">
+      No members yet — add someone above
+    </div>
+  </div>
+</div>

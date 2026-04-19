@@ -1,0 +1,123 @@
+<div class="cont">
+  <div class="ph">
+    <div>
+      <div class="pt">Reports</div>
+      <div class="ps">Overview of your workspace activity</div>
+    </div>
+  </div>
+
+  <div class="loading" *ngIf="loading">Loading reports...</div>
+
+  <div *ngIf="!loading">
+    <div class="metrics">
+      <div class="metric">
+        <div class="metric-label">Total Boards</div>
+        <div class="metric-value">{{ totalBoards }}</div>
+      </div>
+      <div class="metric">
+        <div class="metric-label">Total Tasks</div>
+        <div class="metric-value">{{ totalTasks }}</div>
+      </div>
+      <div class="metric green">
+        <div class="metric-label">Completed</div>
+        <div class="metric-value">{{ doneCount }}</div>
+      </div>
+      <div class="metric blue">
+        <div class="metric-label">In Progress</div>
+        <div class="metric-value">{{ inProgressCount }}</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="scard">
+        <div class="scard-title">Tasks by Status</div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span class="stat-dot todo"></span> To Do
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar todo-bar" [style.width.%]="getPercent(todoCount)"></div>
+          </div>
+          <div class="stat-num">{{ todoCount }}</div>
+          <div class="stat-pct">{{ getPercent(todoCount) }}%</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span class="stat-dot progress"></span> In Progress
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar progress-bar" [style.width.%]="getPercent(inProgressCount)"></div>
+          </div>
+          <div class="stat-num">{{ inProgressCount }}</div>
+          <div class="stat-pct">{{ getPercent(inProgressCount) }}%</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span class="stat-dot done"></span> Done
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar done-bar" [style.width.%]="getPercent(doneCount)"></div>
+          </div>
+          <div class="stat-num">{{ doneCount }}</div>
+          <div class="stat-pct">{{ getPercent(doneCount) }}%</div>
+        </div>
+      </div>
+
+      <div class="scard">
+        <div class="scard-title">Tasks by Priority</div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span class="stat-dot high"></span> High
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar high-bar" [style.width.%]="getPercent(highPriority)"></div>
+          </div>
+          <div class="stat-num">{{ highPriority }}</div>
+          <div class="stat-pct">{{ getPercent(highPriority) }}%</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span class="stat-dot medium"></span> Medium
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar medium-bar" [style.width.%]="getPercent(mediumPriority)"></div>
+          </div>
+          <div class="stat-num">{{ mediumPriority }}</div>
+          <div class="stat-pct">{{ getPercent(mediumPriority) }}%</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-label">
+            <span class="stat-dot low"></span> Low
+          </div>
+          <div class="stat-bar-wrap">
+            <div class="stat-bar low-bar" [style.width.%]="getPercent(lowPriority)"></div>
+          </div>
+          <div class="stat-num">{{ lowPriority }}</div>
+          <div class="stat-pct">{{ getPercent(lowPriority) }}%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="scard" style="margin-top: 16px;">
+      <div class="scard-title">Board Progress</div>
+      <div class="empty" *ngIf="boardStats.length === 0">No boards yet</div>
+      <div class="board-stat" *ngFor="let stat of boardStats">
+        <div class="board-stat-header">
+          <span class="board-stat-name">{{ stat.title }}</span>
+          <span class="board-stat-pct">{{ getBoardPercent(stat.done, stat.total) }}% done</span>
+        </div>
+        <div class="progress-wrap">
+          <div class="progress-bar-full">
+            <div class="progress-fill" [style.width.%]="getBoardPercent(stat.done, stat.total)"></div>
+          </div>
+        </div>
+        <div class="board-stat-counts">
+          <span class="count-badge todo-badge">{{ stat.todo }} todo</span>
+          <span class="count-badge progress-badge">{{ stat.inProgress }} in progress</span>
+          <span class="count-badge done-badge">{{ stat.done }} done</span>
+          <span class="count-total">{{ stat.total }} total</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+.layout-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.layout-main {
+  flex: 1;
+  overflow-y: auto;
+  background: #f0f2f5;
+}
+
+// التعديل هنا: الـ Overlay يظهر فقط عند الحاجة
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 150;
+  display: none; // مخفي افتراضياً
+
+  @media (max-width: 768px) {
+    // يظهر فقط إذا كان السايدبار مفتوحاً
+    // ملاحظة: سنعتمد على وجوده في الـ DOM بواسطة *ngIf في الـ HTML
+    display: block; 
+  }
+}
+
+@media (max-width: 768px) {
+  app-sidebar {
+    position: fixed;
+    left: -260px; // يفضل أن يكون نفس عرض السايدبار بالسالب
+    top: 52px;    // تأكدي أن هذا هو ارتفاع الـ Navbar
+    bottom: 0;
+    width: 260px;
+    z-index: 200;
+    transition: left 0.25s ease-in-out;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+    background: white; // لضمان عدم شفافيته فوق المحتوى
+
+    &.mobile-open {
+      left: 0; // ينزلق للداخل
+    }
+  }
+}

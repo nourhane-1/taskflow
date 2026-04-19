@@ -1,0 +1,210 @@
+.sett-wrap { padding: 24px; max-width: 800px; margin: 0 auto; }
+
+.ph {
+  margin-bottom: 20px;
+  .pt { font-size: 22px; font-weight: 500; color: #222; }
+  .ps { font-size: 13px; color: #888; margin-top: 3px; }
+}
+
+.saved-banner {
+  background: #EAF3DE;
+  color: #27500A;
+  border: 0.5px solid #97C459;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 13px;
+  margin-bottom: 16px;
+}
+
+.scard {
+  background: white;
+  border: 0.5px solid #eee;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.scard-title {
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.av-lg {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #E6F1FB;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #185FA5;
+  flex-shrink: 0;
+}
+
+.profile-info {
+  flex: 1;
+  .profile-name { font-size: 16px; font-weight: 500; color: #222; }
+  .profile-role { font-size: 13px; color: #888; }
+}
+
+.profile-right {
+  text-align: right;
+  .role-label { font-size: 11px; color: #aaa; margin-bottom: 5px; }
+  .role-val { display: flex; align-items: center; gap: 5px; font-size: 13px; font-weight: 500; color: #222; justify-content: flex-end; }
+  .role-dot { width: 8px; height: 8px; border-radius: 50%; background: #185FA5; display: inline-block; }
+}
+
+.fields-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.field-group {
+  .field-label { font-size: 11px; color: #aaa; margin-bottom: 5px; font-weight: 500; }
+  input {
+    width: 100%;
+    padding: 8px 10px;
+    border: 0.5px solid #ddd;
+    border-radius: 8px;
+    font-size: 13px;
+    outline: none;
+    &:focus { border-color: #185FA5; }
+  }
+}
+
+.srow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 0.5px solid #f0f0f0;
+}
+
+.sleft { flex: 1; }
+.stitle { font-size: 13px; font-weight: 500; color: #222; }
+.sdesc { font-size: 12px; color: #888; margin-top: 2px; }
+
+.tog {
+  width: 36px;
+  height: 20px;
+  border-radius: 10px;
+  background: #ddd;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  &.on { background: #185FA5; }
+  .togdot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.2s;
+  }
+  &.on .togdot { left: 18px; }
+}
+
+.theme-grid {
+  display: flex;
+  gap: 12px;
+}
+
+.theme-opt {
+  border: 0.5px solid #eee;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  width: 120px;
+  &.on { border: 2px solid #185FA5; }
+  .theme-preview {
+    height: 60px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+  }
+  .light-prev { background: #f8f9fa; border: 0.5px solid #eee; }
+  .dark-prev { background: #1e2130; }
+  .theme-name { font-size: 12px; color: #555; text-align: center; }
+}
+
+.danger-zone {
+  border: 0.5px solid #F09595;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  background: #FCEBEB;
+}
+
+.dz-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #A32D2D;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.dz-desc { font-size: 12px; color: #A32D2D; margin-bottom: 14px; opacity: 0.8; }
+
+.dz-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.del-btn {
+  padding: 7px 14px;
+  background: #A32D2D;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  &:hover { background: #791F1F; }
+}
+
+.sett-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding-top: 8px;
+}
+
+.btn-primary {
+  padding: 8px 18px;
+  background: #185FA5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+  &:hover { background: #0C447C; }
+}
+
+.btn-outline {
+  padding: 8px 18px;
+  background: transparent;
+  color: #555;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
