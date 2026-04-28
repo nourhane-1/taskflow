@@ -1,4 +1,4 @@
-// نستخدم :host لضبط المكون نفسه كغلاف
+
 :host {
   display: block !important;
   width: 220px !important;
@@ -9,25 +9,25 @@
   position: relative;
   z-index: 10;
 
-  // تنسيقات الموبايل (أقل من 768px)
+
   @media (max-width: 768px) {
     position: fixed !important;
-    top: 52px !important; // تأكدي أنه نفس ارتفاع النافبار
+    top: 52px !important; 
     bottom: 0 !important;
-    left: -220px !important; // البداية خارج الشاشة
-    z-index: 999999 !important; // فوق كل شيء بما في ذلك الأوفرلاي
+    left: -220px !important; 
+    z-index: 999999 !important; 
     transition: left 0.3s ease-in-out;
     visibility: visible !important;
     box-shadow: 4px 0 15px rgba(0, 0, 0, 0.1);
 
-    // الكلاس التي تضاف من المكون الأب عند الضغط على الزر
+  
     &.mobile-open {
       left: 0 !important;
     }
   }
 }
 
-// الحاوية الأساسية للمحتوى
+
 .side {
   display: flex !important;
   flex-direction: column !important;
@@ -40,7 +40,7 @@
   opacity: 1 !important;
 }
 
-// منطقة Workspace (TF)
+
 .ws {
   display: flex !important;
   align-items: center !important;
@@ -67,15 +67,15 @@
 .wsn { font-size: 13px; font-weight: 500; color: #222 !important; }
 .wsp { font-size: 11px; color: #aaa !important; }
 
-// الروابط الأساسية (Navigation Items)
+
 .ni {
   display: flex !important;
   align-items: center !important;
   gap: 8px;
-  padding: 10px 12px; // زيادة مساحة الضغط للموبايل
+  padding: 10px 12px;
   border-radius: 8px;
   font-size: 13px;
-  color: #444 !important; // لون غامق لضمان الظهور
+  color: #444 !important; 
   cursor: pointer;
   margin-bottom: 2px;
   text-decoration: none;
@@ -102,7 +102,7 @@
   visibility: visible !important;
 }
 
-// قوائم البوردات والمهام
+
 .board-lists {
   margin-left: 18px;
   border-left: 1.5px solid #eee;
@@ -118,7 +118,7 @@
   visibility: visible !important;
 }
 
-// زر إضافة بورد جديد
+
 .nbb {
   margin: 15px 10px;
   background: #185FA5 !important;
@@ -136,7 +136,7 @@
   &:hover { background: #0C447C !important; }
 }
 
-// الجزء السفلي (Logout)
+
 .sbot {
   margin-top: auto;
   padding-top: 15px;
@@ -145,7 +145,7 @@
   display: block !important;
 }
 
-// منع أي إخفاء غير مقصود للمحتوى
+
 * {
   box-sizing: border-box;
 }

@@ -127,17 +127,17 @@
   color: #888;
   cursor: pointer;
   font-size: 14px;
-  padding: 4px; // مساحة إضافية للضغط
+  padding: 4px; 
   display: flex;
   align-items: center;
   justify-content: center;
   transition: color 0.2s;
   position: relative;
-  z-index: 10; // يضمن بقاء الزرار فوق خلفية الـ header
+  z-index: 10;
 
   &:hover { 
     color: #e24b4a; 
-    background: rgba(226, 75, 74, 0.1); // خلفية خفيفة عند الوقوف عليه
+    background: rgba(226, 75, 74, 0.1); 
     border-radius: 4px;
   }
 }
@@ -252,38 +252,38 @@
 .cdk-drop-list-dragging .task-card:not(.cdk-drag-placeholder) {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-/* حركة انسيابية للكروت التي تعيد ترتيب نفسها */
+
 .cdk-drop-list-dragging .cdk-drag {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* حركة انسيابية للمكان الفارغ (Placeholder) */
+
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
 
-/* تحسين شكل الكارت أثناء السحب الفعلي */
+
 .cdk-drag-preview {
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23) !important;
   border-radius: 8px;
   opacity: 0.9;
 }
 
-/* حركة الكارت عند تركه يسقط في مكانه */
+
 .cdk-drag-placeholder {
   opacity: 0.3;
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-/* تأكدي أن الكولوم يسمح بظهور الأنيميشن بداخله */
+
 .tasks {
-  min-height: 50px; // مساحة تضمن وجود مكان للأنيميشن حتى لو القائمة فارغة
+  min-height: 50px; 
   transition: all 0.3s ease;
 }
 
-/* تعديل بسيط للـ task-card لضمان عدم تداخل الأنيميشن مع السحب */
+
 .task-card {
   position: relative;
-  display: block; // مهم جداً لأنيميشن الـ Slide
+  display: block; 
   background: white;
-  /* أي transition يدوي هنا قد يتعارض مع Angular Animations، لذا نتركه للـ Angular */
+  
 }

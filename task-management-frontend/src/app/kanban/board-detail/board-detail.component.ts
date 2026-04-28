@@ -15,7 +15,7 @@ import { trigger, transition, style, animate, query, stagger } from '@angular/an
 imports: [CommonModule, FormsModule, TaskModalComponent, RouterLink, DragDropModule],
   templateUrl: './board-detail.component.html',
   styleUrl: './board-detail.component.scss', 
- // جربي استبدال الـ animations بهذا التعريف الأكثر مرونة
+
 animations: [
   trigger('cardAnimation', [
     transition(':enter', [
@@ -141,13 +141,13 @@ getInitials(name: string): string {
 }
 
   deleteList(listId: string) {
-  // مسحنا سطر الـ confirm عشان الحذف يتم فوراً
+ 
   this.boardService.deleteList(this.board._id, listId).subscribe({
     next: () => {
-      // التحديث اللحظي للواجهة
+   
       this.lists = this.lists.filter(l => l._id !== listId);
       
-      // مسح التأسكات المرتبطة
+    
       const updatedTasks = { ...this.tasks };
       delete updatedTasks[listId];
       this.tasks = updatedTasks;
@@ -174,12 +174,21 @@ getInitials(name: string): string {
   });
 }
 
-  deleteTask(listId: string, taskId: string) {
-    this.taskService.deleteTask(taskId).subscribe({
-      next: () => this.tasks[listId] = this.tasks[listId].filter(t => t._id !== taskId)
-    });
-  }
+ deleteTask(event: Event, listId: string, taskId: string) {
+  event.stopPropagation(); 
 
+  
+  this.taskService.deleteTask(taskId).subscribe({
+    next: () => {
+      this.tasks[listId] = this.tasks[listId].filter(t => t._id !== taskId);
+      this.notificationService.add('Task deleted', 'success');
+    },
+    error: (err) => {
+      console.error(err);
+      this.notificationService.add('Delete failed', 'warning');
+    }
+  });
+}
   updateStatus(listId: string, taskId: string, status: string) {
     this.taskService.updateStatus(taskId, status).subscribe({
       next: (updated) => {

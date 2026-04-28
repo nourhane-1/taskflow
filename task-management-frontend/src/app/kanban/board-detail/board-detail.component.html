@@ -53,18 +53,19 @@
             <span>{{ task.assignee.name }}</span>
           </div>
 
-          <div class="task-footer">
-            <select [(ngModel)]="task.status"
-                    (change)="updateStatus(list._id, task._id, task.status)"
-                    (click)="$event.stopPropagation()">
-              <option value="todo">To Do</option>
-              <option value="in-progress">In Progress</option>
-              <option value="done">Done</option>
-            </select>
-            <button class="btn-delete-list" (click)="deleteList(list._id); $event.stopPropagation()">
-  ✕
-</button>
-          </div>
+         <div class="task-footer">
+  <select [(ngModel)]="task.status"
+          (change)="updateStatus(list._id, task._id, task.status)"
+          (click)="$event.stopPropagation()">
+    <option value="todo">To Do</option>
+    <option value="in-progress">In Progress</option>
+    <option value="done">Done</option>
+  </select>
+
+  <button class="btn-delete-list" (click)="deleteTask($event, list._id, task._id)">
+    ✕
+  </button>
+</div>
 
           <div *cdkDragPlaceholder class="drag-placeholder"></div>
         </div>

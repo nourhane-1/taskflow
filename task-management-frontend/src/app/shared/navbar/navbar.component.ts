@@ -17,7 +17,7 @@ import { ThemeService } from '../../core/theme.service';
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit {
-  // تعريف الـ Output بشكل صحيح داخل الكلاس
+
   @Output() menuToggled = new EventEmitter<void>();
 
   user: any = null;
@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
     private router: Router
   ) {}
 
-  // دالة الإرسال للمكون الأب
+  
   toggleMenu() {
     this.menuToggled.emit();
   }
